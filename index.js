@@ -1,8 +1,25 @@
-var validator = require('./lib/validator');
+var validator = require('./lib/validator'),
+    express = require('express'),
+    app = express();
 
-var v = validator('adfasdfsfdasfd83843@gmail.com', function(err, valid) {
-  console.log('Valid: ' + valid);
+app.engine('jade', require('jade').__express);
+app.use(express.bodyParser());
+
+app.get('/', function(req, res) {
+  res.render('index.jade');
 });
-v.on('resolveMx', function(hosts) { console.dir(hosts); });
-v.on('connect', function() { console.log('connected'); });
-v.on('error', function(err) { console.error(err); });
+
+app.post('/check', function(req, res) {
+  var email = req.param('email');
+  if (email === void 0) {
+    res.send(400, 'Include an email');
+    return;
+  }
+
+  validator(email, function(err, valid) {
+    var text = valid ? 'Yep' : 'Nope';
+    res.send(text);
+  });
+});
+
+app.listen(3000);

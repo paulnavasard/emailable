@@ -1,0 +1,22 @@
+{
+  "name": "emailable",
+  "version": "0.0.0",
+  "description": "Test emailability of an email",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/statianzo/emailable.git"
+  },
+  "keywords": [
+    "email"
+  ],
+  "author": "Jason Staten",
+  "license": "BSD",
+  "dependencies": {
+    "express": "3.x",
+    "jade": "0.x"
+  }
+}
