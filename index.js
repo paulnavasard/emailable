@@ -1,25 +1,37 @@
 var validator = require('./lib/validator'),
     express = require('express'),
-    app = express()
+    gate = require('gate'),
+    app = express(),
     port = process.env.PORT || 3000;
 
-app.engine('jade', require('jade').__express);
 app.use(express.bodyParser());
+app.use(express.errorHandler());
+app.set('view engine', 'jade');
 
 app.get('/', function(req, res) {
-  res.render('index.jade');
+  res.render('index');
 });
 
 app.post('/check', function(req, res) {
-  var email = req.param('email');
-  if (email === void 0) {
-    res.send(400, 'Include an email');
+  var emailsParam = req.param('emails'),
+      emails, g;
+  if (emailsParam === void 0) {
+    res.send(400, 'Include emails');
     return;
   }
 
-  validator(email, function(err, valid) {
-    var text = valid ? 'Yep' : 'Nope';
-    res.send(text);
+  emails = emailsParam.split(/\s/);
+  console.log(emails);
+
+  g = gate.create();
+  emails.forEach(function(e) {
+    if (e.length) {
+      validator(e, g.latch(e, 1));
+    }
+  });
+
+  g.await(function(err, results) {
+    res.render('check', {results: results});
   });
 });
 

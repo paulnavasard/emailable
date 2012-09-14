@@ -1,6 +1,10 @@
-h1 Emailable
-h2 Find out if an email is valid
+extends layout
 
-form(method="POST", action="/check")
-  input(type="email",name="email",placeholder="Email")
-  input(type="submit",value="Check it!")
+block content
+  h1 Emailable
+  h2 Find out if an email is valid
+
+  form(method="POST", action="/check")
+    textarea(name="emails", style="width: 300px; height: 500px;")
+
+    input(type="submit",value="Check it!")

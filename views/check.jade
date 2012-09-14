@@ -1,0 +1,14 @@
+extends layout
+block content
+  h1 Results
+  table
+    thead
+      tr
+        th Email
+        th Valid
+    tbody
+    each valid, email in results
+      - var k = valid ? 'valid' : 'invalid'
+      tr(class=k)
+        td= email
+        td= valid
