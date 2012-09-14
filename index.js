@@ -1,6 +1,7 @@
 var validator = require('./lib/validator'),
     express = require('express'),
-    app = express();
+    app = express()
+    port = process.env.PORT || 3000;
 
 app.engine('jade', require('jade').__express);
 app.use(express.bodyParser());
@@ -22,4 +23,4 @@ app.post('/check', function(req, res) {
   });
 });
 
-app.listen(3000);
+app.listen(port);
