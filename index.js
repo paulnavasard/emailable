@@ -21,7 +21,6 @@ app.post('/check', function(req, res) {
   }
 
   emails = emailsParam.split(/\s/);
-  console.log(emails);
 
   g = gate.create();
   emails.forEach(function(e) {
