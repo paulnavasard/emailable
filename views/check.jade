@@ -6,9 +6,11 @@ block content
       tr
         th Email
         th Valid
+        th Message
     tbody
-    each valid, email in results
-      - var k = valid ? 'valid' : 'invalid'
+    each result, email in results
+      - var k = result.valid ? 'valid' : 'invalid'
       tr(class=k)
         td= email
-        td= valid
+        td= result.valid
+        td= result.message
