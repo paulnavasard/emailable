@@ -1,11 +1,15 @@
 {
   "name": "emailable",
-  "version": "0.0.0",
+  "version": "0.0.0-1",
   "description": "Test emailability of an email",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
   },
+  "domains": [
+    "emailable.katalus.com"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/statianzo/emailable.git"
@@ -14,7 +18,7 @@
     "email"
   ],
   "author": "Jason Staten",
-  "license": "BSD",
+  "license": "AGPLv3",
   "dependencies": {
     "express": "3.x",
     "jade": "0.x",
@@ -26,5 +30,6 @@
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
-  }
+  },
+  "subdomain": "katalus.emailable"
 }
